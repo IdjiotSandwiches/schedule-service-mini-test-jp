@@ -1,4 +1,5 @@
-using System;
+using Microsoft.EntityFrameworkCore;
+using ScheduleService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
