@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ScheduleService.Data;
+using ScheduleService.Helpers;
+using ScheduleService.SyncDataServices.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,11 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conf
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient<IUserDataClient, UserDataClient>("UserService", client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5001");
+});
+builder.Services.AddScoped<ScheduleHelper>();
 
 var app = builder.Build();
 

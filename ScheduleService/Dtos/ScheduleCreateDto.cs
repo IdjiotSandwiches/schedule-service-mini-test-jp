@@ -10,5 +10,7 @@ namespace ScheduleService.Dtos
         public TimeOnly StartTime { get; set; }
         [Required]
         public TimeOnly EndTime { get; set; }
+        [Required]
+        public int StudentId { get; set; }
     }
 }
